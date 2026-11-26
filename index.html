@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clinic OS — Reception Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <div>
+        <div class="mark">Clinic<span>OS</span></div>
+      </div>
+      <div class="pitch">Everything the front desk needs, in one calm view.</div>
+      <div class="foot">Physiotherapy &amp; Rehabilitation · Clinic Management</div>
+    </div>
+    <div class="login-form">
+      <h1>Sign in</h1>
+      <div class="sub">Your login determines which portal you land in.</div>
+      <div class="role-picker" id="role-picker">
+        <div class="role-chip active" data-role="reception">Reception</div>
+        <div class="role-chip" data-role="therapist">Therapist</div>
+        <div class="role-chip" data-role="owner">Clinic Owner</div>
+        <div class="role-chip" data-role="it">IT Manager</div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input class="input" id="login-email" value="rudo.chikwanha@clinicos.demo">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input class="input" type="password" id="login-pass" value="••••••••">
+      </div>
+      <button class="btn btn-primary" style="width:100%;padding:11px;" id="login-btn">Sign in to Reception Desk</button>
+      <div class="login-note">Demo build — any password works. Your email decides the portal: rudo.chikwanha@ (Reception), tendai.moyo@ (Physiotherapist), nyasha.chuma@ (Clinic Owner) or kuda.mutasa@ (IT Manager), all @clinicos.demo. All patient, staff and supplier data in this demo is fictional.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app" class="hidden">
+  <div id="sidebar">
+    <div class="sb-brand">
+      <div class="dot">C</div>
+      <div class="name">Clinic<span style="opacity:.5;font-weight:400">OS</span></div>
+    </div>
+    <div class="sb-scroll">
+      <div class="sb-section-title">Main</div>
+      <div class="sb-item" data-view="dashboard"><span class="ic">▦</span><span class="sb-label">Dashboard</span></div>
+      <div class="sb-item" data-view="calendar"><span class="ic">▤</span><span class="sb-label">Calendar</span></div>
+      <div class="sb-item" data-view="patients"><span class="ic">◍</span><span class="sb-label">Patients</span></div>
+      <div class="sb-item" data-view="inventory"><span class="ic">▣</span><span class="sb-label">Inventory</span><span class="badge" id="sb-inv-badge">0</span></div>
+      <div class="sb-item" data-view="reports"><span class="ic">▥</span><span class="sb-label">Reports</span></div>
+
+      <div class="sb-section-title">Additional</div>
+      <div class="sb-item" data-view="settings"><span class="ic">⚙</span><span class="sb-label">Settings</span></div>
+      <div class="sb-item" data-view="help"><span class="ic">?</span><span class="sb-label">Help</span></div>
+    </div>
+  </div>
+
+  <div id="main-col">
+    <div id="topbar">
+      <button class="icon-btn" id="mobile-collapse-btn" title="Toggle menu">☰</button>
+      <div class="search-wrap">
+        <span class="sicon">⌕</span>
+        <input id="global-search" placeholder="Search patients, appointments, inventory, suppliers…" autocomplete="off">
+        <div class="search-results hidden" id="search-results"></div>
+      </div>
+      <div class="spacer"></div>
+      <div class="qa-wrap">
+        <button class="btn btn-primary plus-btn" id="qa-btn" title="Quick actions" aria-label="Quick actions">+</button>
+        <div class="qa-menu hidden" id="qa-menu">
+          <button data-qa="register-patient">◍ Register Patient</button>
+          <button data-qa="book-appointment">▤ Book Appointment</button>
+          <button data-qa="check-in">✓ Check In Patient</button>
+          <button data-qa="add-inventory">▣ Add Inventory</button>
+          <button data-qa="stock-movement">↕ Record Stock Movement</button>
+          <button data-qa="purchase-request">▧ Create Purchase Request</button>
+        </div>
+      </div>
+      <div class="qa-wrap">
+        <button class="avatar avatar-btn" id="avatar-btn" aria-label="Account menu" title="Account">RC</button>
+        <div class="qa-menu hidden" id="avatar-menu">
+          <div class="menu-head"><div class="mh1">Rudo Chikwanha</div><div class="mh2">Receptionist</div></div>
+          <button id="menu-profile">◍ View profile</button>
+          <button id="menu-logout" class="danger">⏻ Log out</button>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <div class="view" id="view-dashboard"></div>
+      <div class="view hidden" id="view-calendar"></div>
+      <div class="view hidden" id="view-patients"></div>
+      <div class="view hidden" id="view-inventory"></div>
+      <div class="view hidden" id="view-reports"></div>
+      <div class="view hidden" id="view-settings"></div>
+      <div class="view hidden" id="view-help"></div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-root"></div>
+<div id="toast-host"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
